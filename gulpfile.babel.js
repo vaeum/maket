@@ -141,7 +141,7 @@ gulp.task('scss', () => {
 })
 
 gulp.task('babel', () => {
-    return gulp.src(['./assets/babel/**/*.js'])
+    return gulp.src(['./assets/script/**/*.js'])
         .pipe(babel({
             comments: false,
             presets: ['es2015']
@@ -191,7 +191,9 @@ gulp.task('watch', () => {
     gulp.watch('assets/scss/**/*.scss', ['scss']);
     gulp.watch('assets/components/**/*.scss', ['scss']);
 
-    gulp.watch('assets/babel/**/*.js', ['babel']);
+    gulp.watch('assets/bootstrap/**/*.scss', ['bootstrap']);
+
+    gulp.watch('assets/script/**/*.js', ['babel']);
     gulp.watch('assets/images/**', ['imagemin']);
 
     gulp.watch('assets/components/**/*.jade', ['jade']);
