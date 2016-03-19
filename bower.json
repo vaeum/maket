@@ -14,5 +14,12 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "backendless": "*",
+    "jquery": "^2.2.2",
+    "angular": "^1.5.2",
+    "bootstrap-sass": "^3.3.6",
+    "bootstrap": "^3.3.6"
+  }
 }
