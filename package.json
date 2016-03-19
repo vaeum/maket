@@ -26,6 +26,7 @@
     "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1",
+    "gulp-concat": "^2.6.0",
     "gulp-csso": "^1.0.1",
     "gulp-filter": "^4.0.0",
     "gulp-imagemin": "^2.4.0",

@@ -20,6 +20,7 @@ import autoprefixer   from 'autoprefixer';
 import bulkSass       from 'gulp-sass-glob-import';
 import babel          from 'gulp-babel';
 import uglify         from 'gulp-uglify';
+import concat         from 'gulp-concat';
 import imagemin       from 'gulp-imagemin';
 import browserSync    from 'browser-sync';
 
@@ -146,6 +147,8 @@ gulp.task('babel', () => {
             comments: false,
             presets: ['es2015']
         }))
+        .pipe(concat('main.js'))
+        .pipe(uglify({mangle: false}))
         .pipe(gulp.dest('./app/js/'))
         .on('end', browserSync.reload)
 })
@@ -181,10 +184,6 @@ gulp.task('buildBowerJS', () => {
         .pipe(jsFilter)
         .pipe(uglify())
         .pipe(gulp.dest('app/js'))
-})
-
-gulp.task('static', () => {
-    runSequence('copyMiscFiles', 'copyFontFiles', 'buildBowerCSS', 'buildBowerJS', 'copyLibsFiles');
 })
 
 gulp.task('watch', () => {
