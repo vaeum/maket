@@ -4,7 +4,9 @@
   "description": "Site of maket",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf app && gulp bootstrap && gulp scss && gulp imagemin && gulp babel && gulp jade && gulp static",
+    "prebuild": "rm -rf app",
+    "build": "gulp bootstrap && gulp scss && gulp imagemin && gulp babel && gulp jade",
+    "postbuild": "gulp copyMiscFiles && gulp copyFontFiles && gulp buildBowerCSS && gulp buildBowerJS && gulp copyLibsFiles && gulp",
     "start": "gulp"
   },
   "repository": {
