@@ -18,10 +18,6 @@ var app = angular.module('app', ["ngRoute"])
                 templateUrl: 'components/adminPage/adminPage.html',
                 controller: 'adminPageCtrl'
             })
-            .when('/addProject', {
-                templateUrl: 'components/addProjectPage/addProjectPage.html',
-                controller: 'addProjectPageCtrl'
-            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -42,11 +38,13 @@ var app = angular.module('app', ["ngRoute"])
             deviceID: deviceID,
             folderName: folderName,
             saveProject: (title) => {
-                Backendless.Persistence.of(Project).save({
+                let action = Backendless.Persistence.of(Project).save({
                     id: Utils.uuid(),
                     title: title,
                     text: Utils.translit(title)
                 });
+
+                return action;
             }
         }
     })
@@ -60,6 +58,22 @@ var app = angular.module('app', ["ngRoute"])
         $scope.setCurrentAction = (action) => {
             $scope.currentAction = action;
         }
+
+        $scope.addProject = (name) => {
+            APPconfig.saveProject(name);
+            $scope.getProject()
+        }
+
+        $scope.getProject = () => {
+            $scope.categories = Backendless.Persistence.of(Project).find().data;
+        }
+
+        $scope.deleteProject = (item) => {
+            Backendless.Persistence.of(Project).remove(item);
+            $scope.getProject()
+        }
+
+        $scope.getProject();
     })
 
     .controller("selectActionPageCtrl", ($scope) => {
@@ -83,23 +97,4 @@ var app = angular.module('app', ["ngRoute"])
                 $scope.isLoginFall = true;
             }
         }
-    })
-
-    .controller("addProjectPageCtrl", ($scope, APPconfig) => {
-
-        $scope.addProject = () => {
-            APPconfig.saveProject($scope.getNameProject)
-            $scope.getProject()
-        }
-
-        $scope.getProject = () => {
-            $scope.categories = Backendless.Persistence.of(Project).find().data;
-        }
-
-        $scope.deleteProject = (item) => {
-            Backendless.Persistence.of(Project).remove(item);
-            $scope.getProject()
-        }
-
-        $scope.getProject();
     })

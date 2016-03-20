@@ -1,105 +1,32 @@
 ul.list-group
-  li.list-group-item.cur(ng-click="setCurrentAction('addProgect')")
+  li.list-group-item.cur(ng-click="setCurrentAction('addProgect')" ng-class="{'active': currentAction == 'addProgect'}")
     h4.list-group-item-heading Добавить проект
     p.list-group-item-text Процесс добавления проекта
   li.list-group-item(ng-if="currentAction == 'addProgect'")
-    //- h4.list-group-item-heading Добавить проект
-    //- p.list-group-item-text Процесс добавления проекта
-    .row
-      .col-sm-6.col-md-4
-        .thumbnail
-          img(src='...', alt='...')
-          .caption
-            h3 Thumbnail label
-            p ...
-            p
-              a.btn.btn-primary(href='#', role='button') Button
-              a.btn.btn-default(href='#', role='button') Button
-      .col-sm-6.col-md-4
-        .thumbnail
-          img(src='...', alt='...')
-          .caption
-            h3 Thumbnail label
-            p ...
-            p
-              a.btn.btn-primary(href='#', role='button') Button
-              a.btn.btn-default(href='#', role='button') Button
-      .col-sm-6.col-md-4
-        .thumbnail
-          img(src='...', alt='...')
-          .caption
-            h3 Thumbnail label
-            p ...
-            p
-              a.btn.btn-primary(href='#', role='button') Button
-              a.btn.btn-default(href='#', role='button') Button
+    form.form-inline
+      .form-group
+        input.form-control(type='text', placeholder='Введите название проекта' ng-model="getNameProject")
+      button.btn.btn-default(type="button" ng-click="addProject(getNameProject)" ng-disabled="!getNameProject") Добавить
 
-  li.list-group-item.cur(ng-click="setCurrentAction('addPage')")
+
+    div(ng-if="categories.length")
+      hr
+
+      h4 Текушие проекты
+
+      ul.lsn.list-categories.pl0
+        li(ng-repeat="category in categories").pr
+          .delete-category-icon(ng-click="deleteProject(category)").cur
+          span {{category.title}}
+
+  li.list-group-item.cur(ng-click="setCurrentAction('addPage')" ng-class="{'active': currentAction == 'addPage'}")
     h4.list-group-item-heading Добавить страницу
     p.list-group-item-text Процесс добавления страницы проекта
   li.list-group-item(ng-if="currentAction == 'addPage'")
-    //- h4.list-group-item-heading Добавить проект
-    //- p.list-group-item-text Процесс добавления проекта
-    .row
-      .col-sm-6.col-md-4
-        .thumbnail
-          img(src='...', alt='...')
-          .caption
-            h3 Thumbnail label
-            p ...
-            p
-              a.btn.btn-primary(href='#', role='button') Button
-              a.btn.btn-default(href='#', role='button') Button
-      .col-sm-6.col-md-4
-        .thumbnail
-          img(src='...', alt='...')
-          .caption
-            h3 Thumbnail label
-            p ...
-            p
-              a.btn.btn-primary(href='#', role='button') Button
-              a.btn.btn-default(href='#', role='button') Button
-      .col-sm-6.col-md-4
-        .thumbnail
-          img(src='...', alt='...')
-          .caption
-            h3 Thumbnail label
-            p ...
-            p
-              a.btn.btn-primary(href='#', role='button') Button
-              a.btn.btn-default(href='#', role='button') Button
 
-  li.list-group-item.cur(ng-click="setCurrentAction('addMaket')")
+
+  li.list-group-item.cur(ng-click="setCurrentAction('addMaket')" ng-class="{'active': currentAction == 'addMaket'}")
     h4.list-group-item-heading Добавить макет
     p.list-group-item-text Процесс добавления макета страницы
   li.list-group-item(ng-if="currentAction == 'addMaket'")
-    //- h4.list-group-item-heading Добавить проект
-    //- p.list-group-item-text Процесс добавления проекта
-    .row
-      .col-sm-6.col-md-4
-        .thumbnail
-          img(src='...', alt='...')
-          .caption
-            h3 Thumbnail label
-            p ...
-            p
-              a.btn.btn-primary(href='#', role='button') Button
-              a.btn.btn-default(href='#', role='button') Button
-      .col-sm-6.col-md-4
-        .thumbnail
-          img(src='...', alt='...')
-          .caption
-            h3 Thumbnail label
-            p ...
-            p
-              a.btn.btn-primary(href='#', role='button') Button
-              a.btn.btn-default(href='#', role='button') Button
-      .col-sm-6.col-md-4
-        .thumbnail
-          img(src='...', alt='...')
-          .caption
-            h3 Thumbnail label
-            p ...
-            p
-              a.btn.btn-primary(href='#', role='button') Button
-              a.btn.btn-default(href='#', role='button') Button
+
