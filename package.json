@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "rm -rf app",
-    "build": "gulp bootstrap && gulp scss && gulp imagemin && gulp babel && gulp jade",
+    "build": "gulp bootstrap && gulp scss && gulp imagemin && gulp babel && gulp jade && gulp jadeComponents",
     "postbuild": "gulp copyMiscFiles && gulp copyFontFiles && gulp buildBowerCSS && gulp buildBowerJS && gulp copyLibsFiles && gulp",
     "start": "gulp"
   },

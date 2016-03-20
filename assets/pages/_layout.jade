@@ -33,13 +33,17 @@ html(lang="ru" ng-app='app')
 
   body
     block header
+      //- include part/_header
 
     .container
-      block content
+      div(ng-view)
+      //- block content
+
     block footer
 
     script(src="js/backendless.js")
     script(src="js/angular.js")
+    script(src="js/angular-route.js")
     script(src="js/main.js")
 
     block script

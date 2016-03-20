@@ -101,8 +101,7 @@ gulp.task('jade', () => {
 
     return gulp.src('./assets/pages/!(_)*.jade')
         .pipe(jade({
-            pretty: true,
-            locals: data,
+            locals: data
         }))
         .pipe(posthtml([
             require('posthtml-bem')({
@@ -114,6 +113,26 @@ gulp.task('jade', () => {
         .pipe(prettify({indent_size: 4}))
         .on('error', console.log)
         .pipe(gulp.dest('./app/'))
+        .on('end', browserSync.reload)
+})
+
+gulp.task('jadeComponents', () => {
+    var data = JSON.parse(fs.readFileSync('./assets/data/data.json', 'utf-8'));
+
+    return gulp.src('./assets/components/**/!(_)*.jade')
+        .pipe(jade({
+            locals: data
+        }))
+        .pipe(posthtml([
+            require('posthtml-bem')({
+                elemPrefix: '__',
+                modPrefix: '_',
+                modDlmtr: '--'
+            })
+        ]))
+        .pipe(prettify({indent_size: 4}))
+        .on('error', console.log)
+        .pipe(gulp.dest('./app/components'))
         .on('end', browserSync.reload)
 })
 
@@ -148,7 +167,7 @@ gulp.task('babel', () => {
             presets: ['es2015']
         }))
         .pipe(concat('main.js'))
-        .pipe(uglify({mangle: false}))
+        // .pipe(uglify({mangle: false}))
         .pipe(gulp.dest('./app/js/'))
         .on('end', browserSync.reload)
 })
@@ -195,7 +214,8 @@ gulp.task('watch', () => {
     gulp.watch('assets/script/**/*.js', ['babel']);
     gulp.watch('assets/images/**', ['imagemin']);
 
-    gulp.watch('assets/components/**/*.jade', ['jade']);
+    gulp.watch('assets/components/**/*.jade', ['jadeComponents']);
+
     gulp.watch('assets/pages/**/*.jade', ['jade']);
     gulp.watch('assets/json/**/*.json', ['jade']);
 

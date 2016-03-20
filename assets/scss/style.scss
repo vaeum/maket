@@ -1,14 +1,4 @@
-.list-categories{
-  li{
-    margin-bottom: 20px;
-  }
-}
-.delete-category-icon{
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 0;
-  right: 0;
-  background: #333;
-  z-index: 1;
-}
+//add style all components
+@import "../components/**/*";
+@import "common/base";
+
