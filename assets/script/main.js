@@ -14,6 +14,10 @@ var app = angular.module('app', ["ngRoute"])
                 templateUrl: 'components/selectActionPage/selectActionPage.html',
                 controller: 'selectActionPageCtrl'
             })
+            .when('/admin', {
+                templateUrl: 'components/adminPage/adminPage.html',
+                controller: 'adminPageCtrl'
+            })
             .when('/addProject', {
                 templateUrl: 'components/addProjectPage/addProjectPage.html',
                 controller: 'addProjectPageCtrl'
@@ -51,6 +55,13 @@ var app = angular.module('app', ["ngRoute"])
 
     })
 
+    .controller("adminPageCtrl", ($scope, APPconfig) => {
+        $scope.currentAction = 'addProgect';
+        $scope.setCurrentAction = (action) => {
+            $scope.currentAction = action;
+        }
+    })
+
     .controller("selectActionPageCtrl", ($scope) => {
         $scope.isLoginFall = false;
 
@@ -62,7 +73,7 @@ var app = angular.module('app', ["ngRoute"])
                 let isLogin = Backendless.UserService.login(user, pswrd);
 
                 if (isLogin != null){
-                    window.location = '/#/addProject'
+                    window.location = '/#/admin'
                     $scope.isLoginFall = false;
                 } else {
                     $scope.isLoginFall = true;

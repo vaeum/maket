@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - 0.12
+env:
+  global:
+    - GH_REF: github.com/vaeum/maket.git
+    - secure: GZ4HWmS6ZnWWyABev/X+wImlnTlvCoZgjnlkG0dzbzQMWUg0DHzcL+pMbCwTSitI5yW9ZvkorsWejqAzawH8B9mFmMAVwpaEN/gPHvDLctQKyQUYML2t9ug82nTW6lslf32GCPgtH33IbUPQddteT1nWhEuOihGRNChxKoiV5AZVqwqzy55Jl+TJpW/qJusFwB68+iVaeqRsSPh716Y45e/2XY/9Rf4me3ubs+AAfhxg2MLZv1sKRuQJCN0t/PaXarwahicGq8uTUOtfnMNEoPdLdgBx8La5CmkCWwI2e/e/bs5hK7gUjSL/AChTdaGNgyRXdDjguXrMzeFCo0pJbcVQkvAJmsl326XTg2ZXvUUAmcxKgrK/dzm7LKkJchJI3uo38MeDo0z0Dxg6LoBIj5lBkOqXH54faU0pxK+iyWv9dlUgS3hRIhJL3nFNORqEctrskdu7S4+cHqnbxBGmHvNAyPQEC4+8M9hH441Iu/z+mV86r+3fVwMhQB2pZgwjZb5Suy/V1ny11UVR3dY5/+TrXnFpYlEn2/OFmOXpNEFMPSdiHVosdDB6rB736SSwE2bs+B6WarUPkmZ8eH13BF08tNH3mjQRxRnwc9GHTOemQYYPNPreF9iZhLOmx5ikTxAwawoGteNj0LzppLCTxyUNBPebhqzWm43jyHCyxV4=
+before_script:
+  - npm install -g bower
+  - npm install -g gulp
+  - bower install
+  - npm install
+script:
+  - npm run build
+  - cd app
+  - git init
+  - 'git config user.name "Alexander Anpleenko"'
+  - 'git config user.email "vaeum@yahoo.com"'
+  - git add .
+  - 'git commit -m "Deploy to GitHub Pages"'
+  - 'git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1'
