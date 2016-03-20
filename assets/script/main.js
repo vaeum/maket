@@ -78,6 +78,7 @@ var app = angular.module('app', ["ngRoute"])
                 } else {
                     $scope.isLoginFall = true;
                 }
+
             } catch (e) {
                 $scope.isLoginFall = true;
             }
