@@ -73,7 +73,7 @@ var app = angular.module('app', ["ngRoute"])
                 let isLogin = Backendless.UserService.login(user, pswrd);
 
                 if (isLogin != null){
-                    window.location = '/#/admin'
+                    window.location = 'maket/#/admin'
                     $scope.isLoginFall = false;
                 } else {
                     $scope.isLoginFall = true;
