@@ -52,6 +52,8 @@ var app = angular.module('app', ["ngRoute"])
     })
 
     .controller("selectActionPageCtrl", ($scope) => {
+        $scope.isLoginFall = false;
+
         $scope.loginFunc = () => {
             let user = $scope.userID;
             let pswrd = $scope.userPassword;

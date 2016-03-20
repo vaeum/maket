@@ -9,9 +9,9 @@
         label(for='formGroupExampleInput2') Пароль
         input#formGroupExampleInput2.form-control(type='password', placeholder='Введите пароль' ng-model="userPassword")
       fieldset.form-group
-        button(type="button" ng-click="loginFunc()" ng-disabled="!userID && !userPassword").btn.btn-default.pull-right Войти
+        button(type="button" ng-click="loginFunc()" ng-disabled="!userID || !userPassword").btn.btn-default.pull-right Войти
 
-    .alert.alert-danger(role="alert" ng-if="isLoginFall") Неправильный логин или пароль
+    .alert.alert-danger(role="alert" ng-if="isLoginFall && userID && userPassword") Неправильный логин или пароль
 
     h3.text-center или
 
