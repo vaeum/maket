@@ -1,0 +1,22 @@
+aside.sidebar(ng-controller="getProject")
+  .top-bar
+    p.logo getMaket
+  .search-box
+    input(type='text', placeholder='Поиск...' ng-model="projectFilter").fluid
+    p.fa.fa-search
+  menu.menu
+    p.menu-name Список проектов
+    ul.lsn.pl0
+      //li.active
+        a(href='#') Action / Adventure
+        ul.lsn.pl0
+          li
+            a(href='#') Latest
+          li
+            a(href='#') Popular
+          li
+            a(href='#') Coming soon
+          li
+            a(href='#') Staff picks
+      li(ng-repeat="item in progects | filter:projectFilter")
+        a(href='#') {{item.text}}

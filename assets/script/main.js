@@ -49,10 +49,6 @@ var app = angular.module('app', ["ngRoute"])
         }
     })
 
-    .controller("choseActionCtrl", ($scope, APPconfig) => {
-
-    })
-
     .controller("adminPageCtrl", ($scope, APPconfig) => {
         $scope.currentAction = 'addProgect';
         $scope.setCurrentAction = (action) => {
@@ -97,4 +93,8 @@ var app = angular.module('app', ["ngRoute"])
                 $scope.isLoginFall = true;
             }
         }
+    })
+
+    .controller("getProject", ($scope) => {
+        $scope.progects = Backendless.Persistence.of(Project).find().data;
     })

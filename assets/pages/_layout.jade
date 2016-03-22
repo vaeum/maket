@@ -32,14 +32,18 @@ html(lang="ru" ng-app='app')
     block style
 
   body
-    block header
-      //- include part/_header
-
     .container
-      div(ng-view)
-      //- block content
+      .window
+        include part/_sidebar
 
-    block footer
+        .main(role='main')
+          include part/_top-bar
+          include part/_feature
+
+          block content
+
+      block footer
+        include part/_footer
 
     script(src="js/backendless.js")
     script(src="js/angular.js")

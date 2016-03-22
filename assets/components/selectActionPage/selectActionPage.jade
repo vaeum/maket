@@ -1,19 +1,12 @@
-.login-wrap
-  .login-form
-    h3.text-center Войти
-    form.main-login-form
-      fieldset.form-group
-        label(for='formGroupExampleInput') Почта
-        input#formGroupExampleInput.form-control(type='text', placeholder='Введите почту' ng-model="userID")
-      fieldset.form-group
-        label(for='formGroupExampleInput2') Пароль
-        input#formGroupExampleInput2.form-control(type='password', placeholder='Введите пароль' ng-model="userPassword")
-      fieldset.form-group
-        button(type="button" ng-click="loginFunc()" ng-disabled="!userID || !userPassword").btn.btn-default.pull-right Войти
+h3.text-center Войти
+form.main-login-form
+  fieldset.form-group
+    label(for='formGroupExampleInput') Почта
+    input#formGroupExampleInput.form-control(type='text', placeholder='Введите почту' ng-model="userID")
+  fieldset.form-group
+    label(for='formGroupExampleInput2') Пароль
+    input#formGroupExampleInput2.form-control(type='password', placeholder='Введите пароль' ng-model="userPassword")
+  fieldset.form-group
+    button(type="button" ng-click="loginFunc()" ng-disabled="!userID || !userPassword").btn.btn-default.pull-right Войти
 
-    .alert.alert-danger(role="alert" ng-if="isLoginFall") Неправильный логин или пароль
-
-    h3.text-center или
-
-    .list-group
-      a.list-group-item(href='#').text-center Перейти к просмотру макетов
+.alert.alert-danger(role="alert" ng-if="isLoginFall") Неправильный логин или пароль

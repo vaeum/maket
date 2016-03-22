@@ -145,6 +145,7 @@ gulp.task('bootstrap', () => {
 
         .pipe(postcss(PROCESSORS))
         .pipe(csso())
+        .pipe(postcss([perfectionist({})]))
         .pipe(gulp.dest('./app/css'))
         .pipe(reload({stream: true}))
 })

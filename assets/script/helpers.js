@@ -18,5 +18,15 @@ var Utils = {
                 ];
             return t[index];
         });
-    }
+    },
+
+    // plus = (a, b) => {
+    //     function res(a, b, t, c){
+    //       if(a.length == 0 && b.length == 0 && !c)
+    //         return t;
+    //       var l = parseInt(a.pop() || '0') + parseInt(b.pop() || '0') + (c || 0);
+    //       return res(a, b, l + (t || ""), l > 9? 1:0);
+    //     }
+    //     return res(a.toString().split(""), b.toString().split(""), "").toString();
+    // }
 };
