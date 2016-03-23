@@ -219,10 +219,6 @@ gulp.task('watch', () => {
 
     gulp.watch('assets/pages/**/*.jade', ['jade']);
     gulp.watch('assets/json/**/*.json', ['jade']);
-
-    gulp.watch('assets/misc/**', ['static']);
-    gulp.watch('assets/libs/**', ['static']);
-    gulp.watch('assets/font/**', ['static']);
 })
 
 gulp.task('default', () =>{
