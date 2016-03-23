@@ -32,7 +32,7 @@ html(lang="ru" ng-app='app')
     block style
 
   body
-    .container
+    .container(ng-controller="toggleSidebar" ng-class="{'sidebar-is-open':isToggleMenu}")
       .window
         include part/_sidebar
 

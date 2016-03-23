@@ -123,3 +123,5 @@ var app = angular.module('app', ["ngRoute", "ngStorage"])
 
         init();
     })
+
+    .controller("toggleSidebar", ($scope) => {})
