@@ -1,11 +1,21 @@
-function Project() {
-    this.id = "";
-    this.title = "";
-    this.text = "";
+class Project {
+    constructor () {
+      this.id = "";
+        this.title = "";
+        this.text = "";
+        this.pages = '';
+    }
 }
 
+class Page {
+    constructor (){
+        this.id = "";
+        this.title = "";
+        this.text = "";
+    }
+}
 
-var app = angular.module('app', ["ngRoute"])
+var app = angular.module('app', ["ngRoute", "ngStorage"])
 
     .config(['$routeProvider', ($routeProvider) => {
 
@@ -29,7 +39,6 @@ var app = angular.module('app', ["ngRoute"])
         Backendless.initApp(appID, secretKEY, version);
     }])
 
-
     .factory('APPconfig', () => {
         let deviceID = 'Mac OSX';
         let folderName = 'testFolder';
@@ -49,31 +58,44 @@ var app = angular.module('app', ["ngRoute"])
         }
     })
 
-    .controller("adminPageCtrl", ($scope, APPconfig) => {
+    .controller("adminPageCtrl", ($scope, APPconfig, $rootScope) => {
         $scope.currentAction = 'addProgect';
         $scope.setCurrentAction = (action) => {
             $scope.currentAction = action;
         }
 
         $scope.addProject = (name) => {
-            APPconfig.saveProject(name);
-            $scope.getProject()
+            Backendless.Persistence.of(Project).save({
+                id: Utils.uuid(),
+                title: name,
+                text: Utils.translit(name),
+                pages: "main"
+            });
+
+            $scope.getProject();
+
+            $rootScope.$broadcast("changeProjectList");
         }
 
         $scope.getProject = () => {
-            $scope.categories = Backendless.Persistence.of(Project).find().data;
+            $scope.progects = Backendless.Persistence.of(Project).find().data;
         }
 
         $scope.deleteProject = (item) => {
             Backendless.Persistence.of(Project).remove(item);
+            $rootScope.$broadcast("changeProjectList");
             $scope.getProject()
         }
 
         $scope.getProject();
     })
 
-    .controller("selectActionPageCtrl", ($scope) => {
+    .controller("selectActionPageCtrl", ($scope, $localStorage) => {
         $scope.isLoginFall = false;
+
+        if ($localStorage.isLogin){
+            window.location = window.location.pathname + '#/admin';
+        }
 
         $scope.loginFunc = () => {
             let user = $scope.userID;
@@ -85,16 +107,25 @@ var app = angular.module('app', ["ngRoute"])
                 if (isLogin != null){
                     window.location = window.location.pathname + '#/admin';
                     $scope.isLoginFall = false;
+                    $localStorage.isLogin = true;
                 } else {
                     $scope.isLoginFall = true;
+                    $localStorage.isLogin = false;
                 }
 
             } catch (e) {
                 $scope.isLoginFall = true;
+                $localStorage.isLogin = false;
             }
         }
     })
 
-    .controller("getProject", ($scope) => {
-        $scope.progects = Backendless.Persistence.of(Project).find().data;
+    .controller("getProject", ($scope, $rootScope) => {
+        let init = () => {
+            $scope.progects = Backendless.Persistence.of(Project).find().data;
+        }
+
+        $rootScope.$on("changeProjectList", () => {init()})
+
+        init();
     })
