@@ -1,0 +1,29 @@
+<ul class="list-group">
+    <li ng-click="setCurrentAction('addProgect')" ng-class="{'active': currentAction == 'addProgect'}" class="list-group-item cur">
+        <h4 class="list-group-item-heading">Добавить проект</h4>
+        <p class="list-group-item-text">Процесс добавления проекта</p>
+    </li>
+    <li ng-if="currentAction == 'addProgect'" class="list-group-item">
+        <form class="form-inline">
+            <div class="form-group"><input type="text" placeholder="Введите название проекта" ng-model="getNameProject" class="form-control"></div><button type="button" ng-click="addProject(getNameProject)" ng-disabled="!getNameProject" class="btn btn-default">Добавить</button></form>
+        <div
+            ng-if="progects.length">
+            <hr>
+            <h4>Текушие проекты</h4>
+            <ul class="lsn list-progects pl0">
+                <li ng-repeat="category in progects" class="pr">
+                    <div ng-click="deleteProject(category)" class="delete-category-icon cur"></div><span>{{category.title}}</span></li>
+            </ul>
+            </div>
+    </li>
+    <li ng-click="setCurrentAction('addPage')" ng-class="{'active': currentAction == 'addPage'}" class="list-group-item cur">
+        <h4 class="list-group-item-heading">Добавить страницу</h4>
+        <p class="list-group-item-text">Процесс добавления страницы проекта</p>
+    </li>
+    <li ng-if="currentAction == 'addPage'" class="list-group-item"></li>
+    <li ng-click="setCurrentAction('addMaket')" ng-class="{'active': currentAction == 'addMaket'}" class="list-group-item cur">
+        <h4 class="list-group-item-heading">Добавить макет</h4>
+        <p class="list-group-item-text">Процесс добавления макета страницы</p>
+    </li>
+    <li ng-if="currentAction == 'addMaket'" class="list-group-item"></li>
+</ul>

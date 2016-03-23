@@ -1,0 +1,7 @@
+<h3 class="text-center">Войти</h3>
+<form class="main-login-form">
+    <fieldset class="form-group"><label for="formGroupExampleInput">Почта</label><input id="formGroupExampleInput" type="text" placeholder="Введите почту" ng-model="userID" class="form-control"></fieldset>
+    <fieldset class="form-group"><label for="formGroupExampleInput2">Пароль</label><input id="formGroupExampleInput2" type="password" placeholder="Введите пароль" ng-model="userPassword" class="form-control"></fieldset>
+    <fieldset class="form-group"><button type="button" ng-click="loginFunc()" ng-disabled="!userID || !userPassword" class="btn btn-default pull-right">Войти</button></fieldset>
+</form>
+<div role="alert" ng-if="isLoginFall" class="alert alert-danger">Неправильный логин или пароль</div>
