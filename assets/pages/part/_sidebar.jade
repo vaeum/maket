@@ -1,11 +1,11 @@
 aside.sidebar(ng-controller="getProject")
   .top-bar
     p.logo getMaket
-  .search-box
+  .search-box(ng-if="progects.length")
     input(type='text', placeholder='Поиск...' ng-model="projectFilter").fluid
     p.fa.fa-search
   menu.menu
-    p.menu-name Список проектов
+    p.menu-name(ng-if="progects.length") Список проектов
     ul.lsn.pl0
       //li.active
         a(href='#') Action / Adventure
@@ -19,4 +19,6 @@ aside.sidebar(ng-controller="getProject")
           li
             a(href='#') Staff picks
       li(ng-repeat="item in progects | filter:projectFilter")
-        a(href='#') {{item.text}}
+        a(href='#' ng-bind="item.title")
+
+    p.menu-name.text-center(ng-if="!progects.length") Нет проектов

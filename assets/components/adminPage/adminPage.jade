@@ -9,13 +9,13 @@ ul.list-group
       button.btn.btn-default(type="button" ng-click="addProject(getNameProject)" ng-disabled="!getNameProject") Добавить
 
 
-    div(ng-if="categories.length")
+    div(ng-if="progects.length")
       hr
 
       h4 Текушие проекты
 
-      ul.lsn.list-categories.pl0
-        li(ng-repeat="category in categories").pr
+      ul.lsn.list-progects.pl0
+        li(ng-repeat="category in progects").pr
           .delete-category-icon(ng-click="deleteProject(category)").cur
           span {{category.title}}
 
