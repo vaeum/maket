@@ -65,16 +65,10 @@ var app = angular.module('app', ["ngRoute", "ngStorage"])
         }
 
         $scope.addProject = (name) => {
-            Backendless.Persistence.of(Project).save({
-                id: Utils.uuid(),
-                title: name,
-                text: Utils.translit(name),
-                pages: "main"
-            });
-
-            $scope.getProject();
-
+            APPconfig.saveProject(name);
             $rootScope.$broadcast("changeProjectList");
+            $scope.getProject();
+            $scope.getNameProject = "";
         }
 
         $scope.getProject = () => {
